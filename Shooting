@@ -1,0 +1,94 @@
+#include <math.h>
+# include "iGraphics.h"
+# include "gl.h"
+
+int ball_x, ball_y;
+int lrx=210,urx=220,dy=35,dc,capture,dx,c;
+
+void iDraw()
+{
+    iClear();
+
+    iSetColor(255,0,0);
+    iFilledRectangle(lrx,0,30,10);
+
+    iSetColor(0,0,255);
+    iFilledRectangle(urx,10,10,25);
+
+    iSetColor(0+dc,0+dc,0+dc);
+    iFilledRectangle(capture+2.5,dy,5,5);
+
+}
+
+void bullet()
+{
+    dy++;
+}
+
+void iMouseMove(int mx, int my)
+{
+
+}
+
+void iMouse(int button, int state, int mx, int my)
+{
+    if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+    {
+
+    }
+    if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+    {
+
+    }
+}
+
+void iKeyboard(unsigned char key)
+{
+    if(key == 'p')
+    {
+        iPauseTimer(0);
+    }
+    if(key == 'r')
+    {
+        iResumeTimer(0);
+    }
+    if(key== ' ')
+    {
+        capture=urx,dy=35,dc=255;
+        iSetTimer(15,bullet);
+    }
+}
+
+void iSpecialKeyboard(unsigned char key)
+{
+
+    if(key == GLUT_KEY_END)
+    {
+        exit(0);
+    }
+
+    if(key==GLUT_KEY_RIGHT)
+    {
+        if(lrx<=470){
+            lrx++,urx++;
+        }
+    }
+
+    if(key==GLUT_KEY_LEFT)
+    {
+        if(lrx>=0){
+            lrx--,urx--;
+        }
+    }
+}
+
+int main()
+{
+//    PlaySound((LPCSTR) "C:\\Users\\Public\\Music\\Sample Music\\Sleep Away.mp3", NULL, SND_FILENAME | SND_ASYNC);
+
+    iInitialize(500, 500,"Shooting Game");
+
+    return 0;
+}
+
+

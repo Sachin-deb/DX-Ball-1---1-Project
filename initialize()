@@ -1,0 +1,169 @@
+void initialize()
+{
+    int pi,qi,cox,coy,cp1,cp2;
+    if(level==1)
+    {
+        for(xi=1;xi<100;xi++)
+        {
+            cod[xi][0]=0;
+            cod[xi][1]=0;
+            cod[xi][2]=0;
+            gift[xi]=0;
+            h_brick[xi]=0;
+        }
+
+       cox=400,coy=800;
+       cod[1][0]=cox;
+       cod[1][1]=coy;
+       cod[1][2]=1;
+       xi=2;
+
+      for(pi=1;pi<=6;pi++)
+      {
+        cox-=25;
+        coy-=40;
+        cp1=cox;
+        cp2=coy;
+
+        for(qi=0;qi<=pi;qi++)
+        {
+          cod[xi][0]=cp1;
+          cod[xi][1]=cp2;
+          cod[xi][2]=1;
+          cp1+=50;
+          xi++;
+        }
+      }
+
+  for(pi=5;pi>=1;pi--)
+  {
+    cox+=25;
+    coy-=40;
+    cp1=cox;
+    cp2=coy;
+    for(qi=0;qi<=pi;qi++)
+    {
+       cod[xi][0]=cp1;
+       cod[xi][1]=cp2;
+       cod[xi][2]=1;
+       cp1+=50;
+       xi++;
+    }
+  }
+    cox+=25;
+    coy-=40;
+    cod[49][0]=cox;
+    cod[49][1]=coy;
+    cod[49][2]=1;
+    }
+
+
+    if(level==2)
+    {
+         for(xi=1;xi<100;xi++)
+         {
+           cod[xi][0]=0;
+           cod[xi][1]=0;
+           cod[xi][2]=0;
+           gift[xi]=0;
+           h_brick[xi]=0;
+         }
+         cox=100;
+         coy=800;
+         xi=1;
+         for(pi=1;pi<=6;pi++)
+         {
+            cp1=cox;
+            cp2=coy;
+            for(qi=1;qi<=pi;qi++)
+            {
+                    cod[xi][0]=cp1;
+                    cod[xi][1]=cp2;
+                    if((cp1==450&&cp2==640)||(cp1==600&&cp2==760)||(cp1==550&&cp2==640)||(cp1==100&&cp2==680)||(cp1==250&&cp2==640))
+                    {
+                         cod[xi][2]=2;
+                         h_brick[xi]=1;
+                    }
+                    else
+                    {
+                        cod[xi][2]=1;
+                        if((cp1==150&&cp2==720)||(cp1==400&&cp2==600)||(cp1==650&&cp2==720))
+                        {
+                            gift[xi]=1;
+                        }
+                    }
+                    cp1+=50;
+                    xi++;
+            }
+            coy-=40;
+        }
+        cox=650;
+        coy=800;
+        for(pi=1;pi<=6;pi++)
+        {
+            cp1=cox;
+            cp2=coy;
+            for(qi=1;qi<=pi;qi++)
+            {
+                    cod[xi][0]=cp1;
+                    cod[xi][1]=cp2;
+                    if((cp1==450&&cp2==640)||(cp1==600&&cp2==760)||(cp1==550&&cp2==640)||(cp1==100&&cp2==680)||(cp1==250&&cp2==640))
+                        {
+                            cod[xi][2]=2;
+                            h_brick[xi]=1;
+                        }
+                    else
+                    {
+                        cod[xi][2]=1;
+                        if((cp1==150&&cp2==720)||(cp1==400&&cp2==600)||(cp1==650&&cp2==720))
+                        {
+                            gift[xi]=1;
+                        }
+                    }
+                    cp1-=50;
+                    xi++;
+            }
+            coy-=40;
+        }
+    }
+
+    if(level==3)
+    {
+            for(xi=1;xi<100;xi++)
+            {
+                cod[xi][0]=0;
+                cod[xi][1]=0;
+                cod[xi][2]=0;
+                gift[xi]=0;
+                h_brick[xi]=0;
+            }
+
+            cox=200;
+            coy=800;
+            xi=1;
+
+            for(pi=1;pi<=10;pi++)
+            {
+                    cp1=cox,cp2=coy;
+                    for(qi=1;qi<=8;qi++)
+                    {
+                            cod[xi][0]=cp1,cod[xi][1]=cp2;
+                            if( ((cp1==200||cp1==550) && (cp2>=440 || cp2<=800))  || ((cp2==800||cp2==440) && (cp1>=250||cp1<=550)) )
+                            {
+                                    cod[xi][2]=3;
+                                    h_brick[xi]=1;
+                            }
+                            else if( ((cp1==250||cp1==500) && (cp2>=480 || cp2<=760))  || ((cp2==760||cp2==480) && (cp1>=300||cp1<=500)) )
+                            {
+                                    cod[xi][2]=2;
+                                    h_brick[xi]=1;
+                            }
+                            else cod[xi][2]=1;
+                            xi++;
+                            cp1+=50;
+                    }
+                    coy-=40;
+            }
+    }
+
+}

@@ -1,0 +1,43 @@
+void updateScore()
+{
+        FILE *fp;
+
+        fp=fopen("F:\DX Ball\Score.txt","r");
+
+        if(fp==NULL){
+            printf("No file..");
+           return ;
+        }
+
+        fscanf(fp,"%d %[^\n]",&high_scorei,temp_arr);
+
+            if(score>high_scorei)
+            {
+               high_scorei=score;
+               strcpy(temp_arr,str2);
+
+               //iSetColor(0,0,0);
+               //iText(250,600,str2,GLUT_BITMAP_TIMES_ROMAN_24);
+               //iText(350,600,update,GLUT_BITMAP_TIMES_ROMAN_24);
+            }
+            fclose(fp);
+
+            FILE *fptr;
+            fptr=fopen("F:\DX Ball\Score.txt","w");
+
+            fprintf(fptr,"%d %s",high_scorei,temp_arr);
+
+            ///sprintf(high_score," %d ",high_scorei);
+            ///iSetColor(0,0,0);
+            ///iText(250,600,temp_arr,GLUT_BITMAP_TIMES_ROMAN_24);
+            ///iText(350,600,high_score,GLUT_BITMAP_TIMES_ROMAN_24);
+
+            fclose(fptr);
+
+            FILE *f;
+            f=fopen("F:\DX Ball\Score.txt","r");
+
+            fscanf(f,"%d %s",&high_scorei,temp_arr);
+
+            fclose(f);
+}

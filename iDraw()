@@ -1,0 +1,265 @@
+void iDraw()
+{
+
+    iClear();
+
+    if(cover==0)
+    {
+        iShowBMP(0,0,"black.bmp");
+
+        iSetColor(0,255,0);
+
+        iRectangle(box_x,box_y,130,100);
+
+        if(title_y<=600) if(box_x<340) box_x+=10;
+
+        iSetColor(255,255,255);
+
+        iText(title_x,title_y,"DX  BALL",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        if(title_y>600) title_y-=10;
+
+        iSetColor(255,223,0);
+
+        iText(credit_x,credit_y,"-by SACHIN & SAMEE",GLUT_BITMAP_HELVETICA_18);
+
+        if(box_x>=340) if(credit_x>320) credit_x-=10;
+
+        iSetColor(0,255,255);
+
+        iText(300,300,"PLAY",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(300,260,"RULES",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(300,220,"EXIT",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(300,180,"HIGH SCORE",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iSetColor(0,0,255);
+
+        iFilledCircle(285,310,5);
+        iFilledCircle(285,270,5);
+        iFilledCircle(285,230,5);
+        iFilledCircle(285,190,5);
+
+        if(option==1){
+            iSetColor(255,255,255);
+            iFilledRectangle(290,290,80,40);
+            iSetColor(0,0,0);
+            iText(300,300,"PLAY",GLUT_BITMAP_TIMES_ROMAN_24);
+        }
+
+        if(option==2){
+            iSetColor(255,255,255);
+            iFilledRectangle(290,250,90,40);
+            iSetColor(0,0,0);
+            iText(300,260,"RULES",GLUT_BITMAP_TIMES_ROMAN_24);
+        }
+
+        if(option==3){
+            iSetColor(255,255,255);
+            iFilledRectangle(290,210,80,40);
+            iSetColor(0,0,0);
+            iText(300,220,"EXIT",GLUT_BITMAP_TIMES_ROMAN_24);
+        }
+
+        if(option==4){
+            iSetColor(255,255,255);
+            iFilledRectangle(290,170,160,40);
+            iSetColor(0,0,0);
+            iText(300,180,"HIGH SCORE",GLUT_BITMAP_TIMES_ROMAN_24);
+        }
+
+    }
+
+
+
+    if(cover==1){
+
+        iShowBMP(0,0,"mosaic.bmp");
+
+        sprintf(update,"Score : %d",score);
+
+        iSetColor(0,255,255);
+
+        iText(740,810,update,GLUT_BITMAP_TIMES_ROMAN_24);
+        iText(740,780,str2,GLUT_BITMAP_TIMES_ROMAN_24);
+
+        if(isfireball==1) iSetColor(178,34,34);
+        else iSetColor(0,255,0);
+        iFilledCircle(ball_x,ball_y,rad);
+
+        iSetColor(0,255,255);
+        iFilledRectangle(stick_x,stick_y,stick_len,stick_wi);
+
+        if(isgift==1)
+        {
+            iSetColor(230,122,169);
+            iFilledCircle(gift_x,gift_y,5);
+        }
+        for(fi=1;fi<=100;fi++)
+        {
+            if(cod[fi][2]>=1)
+            {
+                if(gift[fi]==1)
+                      iSetColor(0,0,255);
+                else if(h_brick[fi]==1)
+                {
+                    if(cod[fi][2]==3) iSetColor(150,150,150); ///ash
+                    else if(cod[fi][2]==2) iSetColor(203,65,84); ///brick red
+                    else  iSetColor(212,175,55); ///golden
+
+                }
+                else{
+                    if(level==2) iSetColor(128,0,128);
+                    else if(level==3) iSetColor(0,255,0);
+                    else iSetColor(255,0,0);
+                }
+
+                iFilledRectangle(cod[fi][0],cod[fi][1],50,40);
+                iSetColor(0,0,0);
+                iRectangle(cod[fi][0],cod[fi][1],50,40);
+            }
+        }
+    }
+
+
+    if(cover==2){
+
+        iShowBMP(0,0,"file.bmp");
+
+        iSetColor(0,255,0);
+
+        iRectangle(340,630,130,70);
+
+        iSetColor(255,255,255);
+
+        iText(350,650,"DX  BALL",GLUT_BITMAP_TIMES_ROMAN_24);
+
+
+        iSetColor(255,255,255);
+
+        iText(245,590,"GAME  IS  OVER !  WELL   PLAYED ! !",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iSetColor(0,255,0);
+
+        sprintf(finale,"Player: %s",str2);
+
+        sprintf(newline,"YOUR FINAL SCORE IS  : %d",score);
+
+        iText(250,300,finale,GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,250,newline,GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iSetColor(0,0,255);
+
+        iText(250,200,"PRESS  '/'  TO CONTINUE",GLUT_BITMAP_TIMES_ROMAN_24);
+
+    }
+
+
+
+    if(cover==3){
+
+        iShowBMP(0,0,"rules.bmp");
+
+        iSetColor(0,0,255);
+
+        iRectangle(290,640,100,50);
+
+        iSetColor(0,0,0);
+
+        iText(300,650," RULES " ,GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,600,"Press spacebar key to shoot the ball.",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,560,"Press  '-->'  and  '<--'  keys to move the bar.",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,530,"Press  'p'  to pause the game.",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,500,"Press  'r'  to resume the game.",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,470,"Hit the blue bricks to get gifts",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,440,"Hardened black bricks must be hit twice",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iText(250,390,"Press  '*'  to go back.",GLUT_BITMAP_TIMES_ROMAN_24);
+
+        iSetColor(178,190,181);
+
+        iFilledCircle(235,610,5);
+        iFilledCircle(235,570,5);
+        iFilledCircle(235,540,5);
+        iFilledCircle(235,510,5);
+        iFilledCircle(235,480,5);
+        iFilledCircle(235,450,5);
+    }
+
+    if(cover==4)
+    {
+        drawTextBox();
+
+        if(mode == 1)
+        {
+            iSetColor(255, 255, 255);
+            iText(255, 410 , str);
+        }
+
+        iText(10, 100, "Click to activate the box, enter to finish.");
+    }
+
+
+    if(cover==5)
+    {
+            iSetColor(255,255,255);
+
+            iFilledRectangle(0,0,800,850);
+
+            iSetColor(255,0,0);
+
+            iText(370,800,"HIGH SCORE",GLUT_BITMAP_TIMES_ROMAN_24);
+
+            iShowBMP(320,800,"cup.bmp");
+            iShowBMP(275,800,"cup.bmp");
+            iShowBMP(230,800,"cup.bmp");
+
+            iShowBMP(520,800,"cup.bmp");
+            iShowBMP(565,800,"cup.bmp");
+            iShowBMP(610,800,"cup.bmp");
+
+            sprintf(high_score," %d ",high_scorei);
+
+            ///char dataToBeRead[50];
+
+            /*while( fgets ( dataToBeRead, 50, fp ) != NULL )
+            {
+                    sscanf("%s",dataToBeRead);
+             }*/
+
+            ///sprintf(dataToBeRead,"%d %s",&high_scorei,temp_arr);
+
+
+
+            ///iSetColor(0,0,128);
+            ///iFilledRectangle(355,495,100,34);
+
+            iSetColor(0,255,255);
+            iFilledRectangle(305,495,30,34);
+            iSetColor(0,0,0);
+            iText(315,498,"1",GLUT_BITMAP_TIMES_ROMAN_24);
+
+            iSetColor(0,0,0);
+            iFilledRectangle(335,495,120,34);
+            iSetColor(255,255,255);
+            iText(350,500,temp_arr,GLUT_BITMAP_TIMES_ROMAN_24);
+
+            iSetColor(0,255,255);
+            iFilledRectangle(455,495,80,34);
+            iSetColor(0,0,0);
+            iText(470,500,high_score,GLUT_BITMAP_TIMES_ROMAN_24);
+
+
+            iText(325,400,"Press '*' to go back",GLUT_BITMAP_TIMES_ROMAN_24);
+    }
+
+}

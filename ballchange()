@@ -1,0 +1,160 @@
+void ballchange(){
+
+    if(isballstarted==1)
+    {
+        ball_x+=dx;
+
+        ball_y+=dy;
+
+        if(isgift==1)
+            gift_y-=3;
+         if(duration>0 && isfireball==1)
+         {
+             duration--;
+         }
+         else
+            isfireball=0;
+        for(i=1;i<=100;i++)
+        {
+            if(cod[i][0]<=ball_x+rad*rate_x&&cod[i][0]+50>=ball_x+rad*rate_x&&cod[i][1]<=ball_y+rad*rate_y&&cod[i][1]+40>=ball_y+rad*rate_y&&cod[i][2]>=1)
+            {
+
+                 ///PlaySound("F:\\DX Ball\\Grenade-SoundBible.com-1777900486-[AudioTrimmer.com].wav", NULL, SND_ASYNC);
+
+                if(gift[i]==1&&isgift==0)
+                {
+                    gift_x=cod[i][0];
+                    gift_y=cod[i][1];
+                    isgift=1;
+                }
+                cod[i][2]--;
+
+                ///if(cod[i][2]==1)  score+=2;
+
+                score++;
+
+                if(score==171)
+                {
+                        cover=2;
+                }
+
+                if(score==49)
+                {
+                        level=2;
+                        dx=5;
+                        dy=-5;
+                        rate_x=1;
+                        rate_y=-1;
+                        stick_x=60;
+                        stick_y=0;
+                        stick_len=60;
+                        stick_wi=10;
+                        rad=10;
+                        ball_x=stick_x+stick_len/2;
+                        ball_y=stick_wi+rad;
+                        isfireball=2;
+                        isballstarted=0;
+                        initialize();
+                }
+
+                if(score==91)
+                {
+                        level=3;
+                        dx=5;
+                        dy=-5;
+                        rate_x=1;
+                        rate_y=-1;
+                        stick_x=60;
+                        stick_y=0;
+                        stick_len=60;
+                        stick_wi=10;
+                        rad=10;
+                        ball_x=stick_x+stick_len/2;
+                        ball_y=stick_wi+rad;
+                        isfireball=2;
+                        isballstarted=0;
+                        initialize();
+                }
+
+                if(isfireball==0)
+                {
+                    if(ball_y+rad*rate_y==cod[i][1]+40||ball_y+rad*rate_y==cod[i][1])
+                {
+                    dy=-dy;
+                    rate_y=-rate_y;
+                }
+                else
+                {
+                    dx=-dx;
+                    rate_x=-rate_x;
+                }
+                }
+                break;
+            }
+        }
+        if(gift_x+5<=stick_x+stick_len&&gift_x-5>=stick_x&&gift_y-5==stick_wi&&isgift>=1)
+        {
+            isgift=0;
+            srand(time(NULL));
+            gift_type=rand()%3;
+            if(gift_type==0)
+               {
+                   stick_len+=40;
+
+               }
+            else if(gift_type==1)
+            {
+                isballstarted=0;
+                ball_x=stick_x+stick_len/2;
+                ball_y=stick_wi+rad;
+            }
+             else if(gift_type==2)
+             {
+                 isfireball=1;
+                 duration=500;
+             }
+        }
+        if(isgift>=1&&gift_y<=0)
+            isgift=0;
+        if(ball_x>790 || ball_x<10) dx=-dx,rate_x=-rate_x,PlaySound("F:\\DX Ball\\Bounce.wav", NULL, SND_ASYNC|SND_NOSTOP);
+
+        if(ball_y>840) dy=-dy,rate_y=-rate_y,PlaySound("F:\\DX Ball\\Bounce.wav", NULL, SND_ASYNC | SND_NOSTOP);
+
+        if(ball_x+rad>=stick_x&&ball_x-rad<=stick_x+stick_len&&ball_y-rad==stick_y+stick_wi)
+        {
+
+            dy=-dy,rate_y=-rate_y;
+
+            PlaySound("F:\\DX Ball\\Bounce.wav", NULL, SND_ASYNC|SND_NOSTOP);
+
+            if(ball_x-rad==stick_x+stick_len||ball_x+rad==stick_x) dx=-dx,rate_x=-rate_x;
+
+        }
+        else
+        {
+
+            if(ball_y-rad<stick_y){
+                    updateScore();
+                    cont_box=0;
+                    cover=2;
+                    level=1;
+                    option=0;
+                    mode=0;
+                    isballstarted=0;
+                    dx=5;
+                    dy=5;
+                    rate_x=rate_y=1;
+                    stick_x=60;
+                    stick_y=0;
+                    stick_len=60;
+                    stick_wi=10;
+                    isfireball=0;
+                    ball_x=stick_x+stick_len/2;
+                    ball_y=stick_wi+rad;
+                    initialize();
+            }
+
+        }
+
+    }
+}

@@ -1,0 +1,144 @@
+void iMouse(int button, int state, int mx, int my)
+{
+
+if(button == GLUT_LEFT_BUTTON && state == GLUT_DOWN)
+
+    {
+
+        if(mx >= 250 && mx <= 500 && my >= 400 && my <= 430 && mode == 0)
+		{
+			mode = 1;
+		}
+
+		/*else if(cover == 4 && mx >= 320 && mx <= 450 && my >= 280 && my <= 310)
+        {
+            cover = 1/*,music=1*//*;
+        }*/
+
+    }
+
+if(button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN)
+
+    {
+
+
+
+    }
+
+}
+
+
+
+
+void iKeyboard(unsigned char key)
+{
+
+    int i;
+	if(mode == 1)
+	{
+        if(key == '\r')
+		{
+			mode = 0;
+			strcpy(str2,str);
+			for(i = 0; i <len; i++)
+				str[i] = 0;
+			len = 0;
+		}
+		else
+		{
+			str[len] = key;
+			len++;
+		}
+	}
+
+    if(key == '/')
+    {
+        cover=0;///here we start the game again
+    }
+
+    if(key == 'p')
+    {
+        iPauseTimer(0);
+
+    }
+
+    if(key=='*')
+    {
+        cover=0;
+    }
+
+    if(key == 'r')
+    {
+        iResumeTimer(0);
+    }
+
+    if(key==' ') isballstarted=1;
+
+    if(key == '\r')
+    {
+        if(option == 1) score=0,cover=4,option=0;
+
+        else if(option == 2) cover=3;
+
+        else if(option == 3) exit(0),option=0;
+
+        else if(option == 4)
+        {
+                updateScore();
+                cover=5;
+        }
+
+        else if(cont_box==1)
+        {
+                cover=1;
+        }
+    }
+}
+
+
+
+
+
+void iSpecialKeyboard(unsigned char key)
+{
+
+    if(key == GLUT_KEY_END)
+    {
+        exit(0);
+    }
+
+    if(key == GLUT_KEY_LEFT)
+    {
+        if(stick_x>0)
+       {
+
+            stick_x-=15;
+
+            if(isballstarted==0) ball_x-=15;
+       }
+
+    }
+
+    if(key == GLUT_KEY_RIGHT)
+    {
+        if(stick_x+stick_len<=785)
+        {
+            stick_x+=15;
+            if(isballstarted==0) ball_x+=15/*,music=0*/;
+        }
+
+    }
+
+    if(key == GLUT_KEY_DOWN)
+    {
+        if(cover==0 && option != 4) option++;
+
+        if(cover==4) cont_box=1;
+    }
+
+    if(key ==GLUT_KEY_UP)
+    {
+        if(option != 1) option--;
+    }
+
+}

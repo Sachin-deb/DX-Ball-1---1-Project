@@ -1,0 +1,137 @@
+#include <stdio.h>
+
+#include <string.h>
+
+#include <math.h>
+
+#include <stdlib.h>
+
+#include <time.h>
+
+#include <Windows.h>
+
+#include "iGraphics.h"
+
+int cont_box;
+
+int  get_score;
+
+int temp3;
+
+int box_x=-130;
+
+int box_y=550;
+
+int credit_x=800;
+
+int credit_y=500;
+
+int title_x=350;
+
+int title_y=813;
+
+int gift_x;
+
+int gift_y;
+
+int isgift=0;
+
+int additional_length=0;
+
+int duration;
+
+int gift_type;
+
+int timer;
+
+int ara[1000][1000];
+
+int p1=0;
+
+int p2=790;
+
+int isballstarted=0;
+
+int px,py;
+
+int ball_x=100;
+
+int ball_y=20;
+
+int dx=5;
+
+int dy=5;
+
+int rad=10;
+
+int stick_x=60;
+
+int stick_y=0;
+
+int stick_len=60;
+
+int stick_wi=10;
+
+int score;
+
+int i,j,xx,yy;
+
+int colour;
+
+char update[800];
+
+char finale[800];
+
+char newline[800];
+
+int cover=0;
+
+int clr1=50,clr2=50,clr3=50;
+
+int clr[2000][3];
+
+int rate_x=1;
+
+int rate_y=1;
+
+int option;
+
+char str[100];
+
+char str2[100];
+
+char temp_arr[100];
+
+int len;
+
+int mode;
+
+int fi,se;
+
+int c1,c2;
+
+int p,q;
+
+int temp1,temp2;
+
+int  ba1,ba2,ba3,ba4,flag;
+
+int cod[100][3];
+
+int xi,yi;
+
+int level=1;
+
+int gift[100];
+
+int h_brick[100];
+
+int g;
+
+int hb;
+
+int isfireball=0;
+
+int high_scorei;
+
+char high_score[100];
